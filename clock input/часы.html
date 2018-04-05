@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Часы</title>
+</head>
+
+<style type="text/css">
+	
+#chasi{
+	margin: 150px 400px;
+	width: 500px;
+	height: 200px;
+	border: 10px solid blue;
+	border-radius: 30px;
+	position: relative;
+}
+
+#Date {
+    font-family: Calibri, sans-serif; 
+    font-size:27px; 
+   display: none;
+    color: tomato;
+    padding:0px 85px;
+    
+}
+#vremya{
+	color: red;
+	border-color: black;
+	text-align: center;
+	border-radius: 20px;
+	margin: 20px 4px;
+	font-size: 40px;
+ text-shadow:0 10px 10px #FF4500;
+}
+#hider{
+	position: relative;
+	background: yellow;
+	border-radius: 30px;
+	color:green;
+	
+}
+#stop{position: relative;
+	width: 75px;
+	background: silver;
+	border-radius: 30px;
+	color:gold;
+
+}
+#knopka1{
+	margin: 20px 150px;
+}
+
+</style>
+<body onLoad="myclock()">
+
+
+<div id="chasi">
+
+<div id="knopka1">
+<input id="hider" type=button value="Включить" onClick="startclock();">
+<input id="stop" type=button value="Stop" onClick="stopclock();">
+</div>
+<form name="clockexam">
+<input id="vremya" type="text" name="clock" ;>
+
+</form>
+<span id="Date"></span>
+
+
+</div>
+
+<script language="JavaScript">
+ var dateDiv = document.getElementById('Date'),
+    monthsNames = [ "Января", "Февраля", "Мартa", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" ],
+    daysNames = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+
+
+function dateView() {
+    var currentDate = new Date();
+    dateDiv.innerText = daysNames[currentDate.getDay()] + ", " + currentDate.getDate() + " " + monthsNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
+};
+
+
+var knopka=0;
+function myclock()
+{
+if(knopka===1)
+{
+    document.getElementById('hider').onclick = function() {
+      document.getElementById('Date').style.display = 'block';
+    }
+
+ndata= new Date();
+hours= ndata.getHours();
+minutes= ndata.getMinutes();
+seconds= ndata.getSeconds();
+datastr= ((hours < 10) ? "0" : " ") + hours;
+datastr+= ((minutes < 10) ? ":0" : ":") + minutes;
+datastr+= ((seconds < 10) ? ":0" : ":") + seconds;
+window.document.clockexam.clock.value = datastr;
+}
+setTimeout("myclock();",1000);
+}
+function startclock()
+{
+knopka=1; 
+}
+function stopclock()
+{
+knopka=0;
+}
+
+dateView();
+</script> 
+
+
+
+
+
+
+
+
+</body>
+</html>
